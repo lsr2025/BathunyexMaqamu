@@ -219,6 +219,23 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
   #mobnav{display:block}
   #shell{padding-bottom:56px}
 }
+
+/* ── DOWNLOAD BAR ── */
+.dl-bar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px;padding:16px;background:var(--glt);border:1px solid var(--aubdr);border-radius:8px;align-items:center}
+.dl-lbl{font-family:Arial,sans-serif;font-size:10px;font-weight:700;color:var(--g);letter-spacing:1px;text-transform:uppercase;flex:1;min-width:100px}
+.dl-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:6px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;border:none;transition:all .18s}
+.dl-btn-w{background:var(--g);color:#fff}
+.dl-btn-w:hover{background:var(--g2)}
+.dl-btn-p{background:var(--au);color:var(--g3)}
+.dl-btn-p:hover{background:var(--au2)}
+.dl-icon{font-size:14px}
+@media print{
+  #bar,#mobnav,#sidenav,.dl-bar{display:none!important}
+  #shell{margin-top:0!important}
+  .page{display:none!important}
+  .page.printing{display:block!important}
+  .doc-pg.printing{page-break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -246,6 +263,8 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
   <div class="sn-item" onclick="show('d3')" data-pg="d3"><span class="sn-num">3</span> Letter of Authority</div>
   <div class="sn-item" onclick="show('d4')" data-pg="d4"><span class="sn-num">4</span> Power of Attorney</div>
   <div class="sn-item" onclick="show('d5')" data-pg="d5"><span class="sn-num">5</span> Service Level Agreement</div>
+  <div class="sn-item" onclick="show('d6')" data-pg="d6"><span class="sn-num">6</span> Memorandum of Agreement</div>
+  <div class="sn-item" onclick="show('d7')" data-pg="d7"><span class="sn-num">7</span> Remuneration Framework</div>
   <div class="sn-foot">
     <img class="sn-foot-logo" src="data:image/png;base64,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YJwjghA8VuVFwnR23wD5optONxIyzgXjXFp20S1lLO8rn7hj9czGfMmPTs/LpBJJW45PFH/9yiV/8J6rx8cGGRdCCiEEYzyZTNalG3KFImNxD35R8Drs0TkjRCCF2HX4+LzWlhULuwvFCSEkMiakFfheyoGbL1v5wit9h0fyKdsixPHJ4gc3LfvD9109NnIUADjjWJ7a4IxZC/7p4Rfv33ssaUfhifE0/Fec6RMlcUTP4IMv7Fs6o2XlwtmFYkFKCxGFlEEYJm1xy+Xrdx04cnAo6wfBr199yR/f+ZbcWD9E57pU3kjfMWPWl+5/4RtPv1KXcCp73t/sOouZZqZLlOU4UI4axf3b9y2a0bpq0dxCqSCEQEQhZBiqhMS3b9qw45Weq5bN/cvfuCU3fkKRAIiMt3V0//2Pt33jyf0N6WSsyIuH6doOEUFEnGFoAJT/v37z1psuWzwyOiyFBEQE1Fo5iYRidQwxLA6HgU/GGKWUCslAU3PHX3//iW888VJjOmVMzR4HFPP6M12WMiI6X0AwNCh+9vzLizuaVy+ZH22vRkQupDaGQWjCEhFE+5cj72ZLa+fnvv/4Nx6PFXkxMr2ihFN0ue3lhR3Na5YsKJSKQkrGGRMSEXHKMTeMscbmrr+6+5F/fmxPrMiLk2kXJZysy59u3Tu/rWnd0gUFtyiEKK90V09p4ryhsf3Pv3X/13++qzFdFyvy4uSNECVM1SUTP926Z15b07plCwtukXMevVTAGIOM19e3/b/fvO+rD+1oysSKvHh5g0QJU3RJTPxk6565rZn1kS6ZICJkkMk0/fHX/+OrD77QXFbka3kTbcyvAG+cKKGiS84QmfjJc3u7m9IbLlk6WSgIIdN1jX/41Xu++uD25kydjhV5cfOGihJOvJwLkYn7ntvT1ZC6YtVyZPIzd93ztQefjxUZA9N+QsaZQERjiDO07MQn77qXIe49OnzX/VtbG9KxImNgup3n5yDa6K0JgsBHZI5t0au8azbmYuFNsJQR0fiSISYcB8pnysSCjAF4E0UJU069gVPeQRlzcfMmRyie8SylmIucOGw2puaIRRlTc8SijKk5YlHG1ByxKGNqjliUMTVHLMqYmiMWZUzNEYsypuaIRRlTc8SijKk5YlHG1ByxKGNqjliUMTVHLMqYmiMWZUzNEYsypuaIRRlTc8SijKk5YlHG1ByxKGNqjliUMTVHLMqYmiMWZUzNEYsypuaIRRlTc8SijKk5YlHG1ByxKGNqjliUMTVHLMqYmiMWZUzNEYsypuaIRRlTc8SijKk5/i+t8NzkfmPEdAAAADl0RVh0Q29udGFpbnNBaUdlbmVyYXRlZENvbnRlbnQ6Q29udGFpbnNBaUdlbmVyYXRlZENvbnRlbnQAWWVz/o9BOAAAABx0RVh0cGRmOkF1dGhvcgBsb25hdGhlbWJhIHJhZGViZcc/WZgAAAB+dEVYdHhtcDpDcmVhdG9yVG9vbABDYW52YSAoUmVuZGVyZXIpIGRvYz1EQUhHRG95MWF2ZyB1c2VyPVVBQ18zSmFUbG1rIGJyYW5kPUJBQ18zT1JNc3BVIHRlbXBsYXRlPVphcmlmIFllxZ9pbCDEsHNpbSBTb3lpc2ltIExvZ28gIDVdL4AAAAAASUVORK5CYII=" alt="Bathunywe"/>
     <div class="sn-foot-sub">bathunywe.vercel.app<br>064 693 4410 &middot; 083 477 0979<br>April 2026</div>
@@ -262,6 +281,8 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
     <button class="mtab" onclick="show('d3')" data-pg="d3"><span class="mtab-icon">3</span><span class="mtab-lbl">Authority</span></button>
     <button class="mtab" onclick="show('d4')" data-pg="d4"><span class="mtab-icon">4</span><span class="mtab-lbl">POA</span></button>
     <button class="mtab" onclick="show('d5')" data-pg="d5"><span class="mtab-icon">5</span><span class="mtab-lbl">SLA</span></button>
+    <button class="mtab" onclick="show('d6')" data-pg="d6"><span class="mtab-icon">6</span><span class="mtab-lbl">MOA</span></button>
+    <button class="mtab" onclick="show('d7')" data-pg="d7"><span class="mtab-icon">7</span><span class="mtab-lbl">Remuner.</span></button>
   </div>
 </nav>
 
@@ -297,6 +318,8 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
   <div class="toc-item" onclick="show('d3')"><div class="toc-num">3</div><div class="toc-body"><div class="toc-t">Letter of Authority</div><div class="toc-d">Carry-everywhere mandate letter &mdash; authorises Bathunywe with COGTA, ABSA, RLCC, municipalities</div></div><div class="toc-arr">&rsaquo;</div></div>
   <div class="toc-item" onclick="show('d4')"><div class="toc-num">4</div><div class="toc-body"><div class="toc-t">General Power of Attorney</div><div class="toc-d">Legal authority for Bathunywe to sign, negotiate, and act on the Trust&rsquo;s behalf</div></div><div class="toc-arr">&rsaquo;</div></div>
   <div class="toc-item" onclick="show('d5')"><div class="toc-num">5</div><div class="toc-body"><div class="toc-t">Service Level Agreement + Annexure A</div><div class="toc-d">Governing agreement including the full Remuneration Schedule</div></div><div class="toc-arr">&rsaquo;</div></div>
+  <div class="toc-item" onclick="show('d6')"><div class="toc-num">6</div><div class="toc-body"><div class="toc-t">Memorandum of Agreement</div><div class="toc-d">Exclusive Land Enablement Advisory mandate &mdash; remuneration structure, obligations and term</div></div><div class="toc-arr">&rsaquo;</div></div>
+  <div class="toc-item" onclick="show('d7')"><div class="toc-num">7</div><div class="toc-body"><div class="toc-t">Remuneration Framework</div><div class="toc-d">One-pager summary of the three-layer Bathunywe remuneration model for the Amaqamu Trust engagement</div></div><div class="toc-arr">&rsaquo;</div></div>
   <div class="toc-foot"><span>CONFIDENTIAL</span> &mdash; For signing and execution purposes only<br>bathunywe.vercel.app &middot; 064 693 4410 &middot; 083 477 0979 (Kwahlelwa Group)</div>
 </div>
 
@@ -345,6 +368,12 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
     </div>
     <p style="text-align:center;font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:var(--g);margin-top:20px;letter-spacing:.5px;">THIS RESOLUTION IS CERTIFIED CORRECT AND IS BINDING ON THE TRUST</p>
   </div>
+
+  <div class="dl-bar">
+    <span class="dl-lbl">&#8659; Download Document</span>
+    <a class="dl-btn dl-btn-w" href="/files/01_Trustee_Resolution_TR001_2026.docx" download><span class="dl-icon">&#128196;</span>Word (.docx)</a>
+    <button class="dl-btn dl-btn-p" onclick="printDoc('d1')"><span class="dl-icon">&#128438;</span>Save as PDF</button>
+  </div>
   <div class="doc-foot"><div class="df-l">Resolution TR-001/2026 &middot; Azibuye Emasisweni MaQamu Community Trust (IT 1021/2007) &middot; Bathunywe Business Enterprise</div><div class="df-r">CONFIDENTIAL</div></div>
 </div>
 
@@ -383,6 +412,12 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
       <div class="sig-b"><div class="sig-lbl">Acknowledged and Accepted</div><div class="sig-ln"></div><div class="sig-nm">Ms Thembeka P Ndlovu-Nkabinde</div><div class="sig-rl">Managing Director</div><div class="sig-en">Bathunywe Business Enterprise</div><div class="sig-dt">Date: ___________________________</div></div>
     </div>
     <div class="wit-grid"><div><div class="wit-ln"></div><div class="wit-lbl">Witness 1 &mdash; Full Name &amp; Signature</div></div><div><div class="wit-ln"></div><div class="wit-lbl">Witness 2 &mdash; Full Name &amp; Signature</div></div></div>
+  </div>
+
+  <div class="dl-bar">
+    <span class="dl-lbl">&#8659; Download Document</span>
+    <a class="dl-btn dl-btn-w" href="/files/02_Appointment_Letter.docx" download><span class="dl-icon">&#128196;</span>Word (.docx)</a>
+    <button class="dl-btn dl-btn-p" onclick="printDoc('d2')"><span class="dl-icon">&#128438;</span>Save as PDF</button>
   </div>
   <div class="doc-foot"><div class="df-l">Appointment Letter BBE/ACT/2026/APT/001 &middot; Azibuye Emasisweni MaQamu Community Trust &middot; Bathunywe Business Enterprise</div><div class="df-r">CONFIDENTIAL</div></div>
 </div>
@@ -427,6 +462,12 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
       <div class="sig-b"><div class="sig-lbl">Signed on behalf of the Trust</div><div class="sig-ln"></div><div class="sig-nm">Mr Ngcobo</div><div class="sig-rl">Chairperson / Authorised Trustee</div><div class="sig-en">Azibuye Emasisweni MaQamu Community Trust (IT 1021/2007)</div><div class="sig-dt">Date: ___________________________</div></div>
     </div>
     <div class="stamp"><div class="stamp-lbl">Official Trust Stamp</div><div class="stamp-a"></div></div>
+  </div>
+
+  <div class="dl-bar">
+    <span class="dl-lbl">&#8659; Download Document</span>
+    <a class="dl-btn dl-btn-w" href="/files/03_Letter_of_Authority_LOA001.docx" download><span class="dl-icon">&#128196;</span>Word (.docx)</a>
+    <button class="dl-btn dl-btn-p" onclick="printDoc('d3')"><span class="dl-icon">&#128438;</span>Save as PDF</button>
   </div>
   <div class="doc-foot"><div class="df-l">Letter of Authority BBE/ACT/2026/LOA/001 &middot; Azibuye Emasisweni MaQamu Community Trust &middot; Bathunywe Business Enterprise</div><div class="df-r">CONFIDENTIAL</div></div>
 </div>
@@ -482,6 +523,12 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
     <div class="wit-grid"><div><div class="wit-ln"></div><div class="wit-lbl">Witness 1 &mdash; Full Name &amp; Signature</div></div><div><div class="wit-ln"></div><div class="wit-lbl">Witness 2 &mdash; Full Name &amp; Signature</div></div></div>
     <p class="bt" style="margin-top:14px;font-style:italic;color:var(--lgr);font-size:11px;">Present together with: (1) certified copy of Resolution TR-001/2026; (2) Letter of Authority BBE/ACT/2026/LOA/001 &mdash; both dated 6 April 2026.</p>
   </div>
+
+  <div class="dl-bar">
+    <span class="dl-lbl">&#8659; Download Document</span>
+    <a class="dl-btn dl-btn-w" href="/files/04_General_Power_of_Attorney_POA001.docx" download><span class="dl-icon">&#128196;</span>Word (.docx)</a>
+    <button class="dl-btn dl-btn-p" onclick="printDoc('d4')"><span class="dl-icon">&#128438;</span>Save as PDF</button>
+  </div>
   <div class="doc-foot"><div class="df-l">General Power of Attorney BBE/ACT/2026/POA/001 &middot; Azibuye Emasisweni MaQamu Community Trust &middot; Bathunywe Business Enterprise</div><div class="df-r">CONFIDENTIAL</div></div>
 </div>
 
@@ -536,7 +583,128 @@ ul.ul li{font-size:13px;color:var(--sl);margin-bottom:6px;line-height:1.65}
       <div class="sig-b"><div class="sig-lbl">Bathunywe</div><div class="sig-ln"></div><div class="sig-nm">Ms T P Ndlovu-Nkabinde</div><div class="sig-rl">Bathunywe Business Enterprise</div><div class="sig-dt">Date: ___________________________</div></div>
     </div>
   </div>
+
+  <div class="dl-bar">
+    <span class="dl-lbl">&#8659; Download Document</span>
+    <a class="dl-btn dl-btn-w" href="/files/05_Service_Level_Agreement_with_Annexure.docx" download><span class="dl-icon">&#128196;</span>Word (.docx)</a>
+    <button class="dl-btn dl-btn-p" onclick="printDoc('d5')"><span class="dl-icon">&#128438;</span>Save as PDF</button>
+  </div>
   <div class="doc-foot"><div class="df-l">Service Level Agreement BBE/ACT/2026/SLA/001 &middot; Azibuye Emasisweni MaQamu Community Trust &middot; Bathunywe Business Enterprise</div><div class="df-r">CONFIDENTIAL</div></div>
+</div>
+
+
+<!-- ══ DOC 6: MEMORANDUM OF AGREEMENT ══ -->
+<div id="pg-d6" class="page doc-pg">
+  <div class="doc-banner">
+    <div class="doc-eye">Document 06 of 07</div>
+    <div class="doc-ttl">Memorandum of Agreement</div>
+    <div class="doc-sub">Land Enablement Advisory &amp; Investor Sourcing Mandate</div>
+    <div class="doc-ref">Bathunywe Business Enterprise (Pty) Ltd &amp; Azibuye Emasisweni Maqamu Community Property Trust &nbsp;&middot;&nbsp; April 2026</div>
+  </div>
+  <div class="doc-body">
+    <table class="itbl">
+      <tr><td>Party A &mdash; Advisor</td><td>Bathunywe Business Enterprise (Pty) Ltd</td></tr>
+      <tr><td>Party B &mdash; Trust</td><td>Azibuye Emasisweni Maqamu Community Property Trust (IT 1021/2007)</td></tr>
+      <tr><td>Land Value</td><td>R16,743,000.00 (Sixteen Million Seven Hundred and Forty-Three Thousand Rand)</td></tr>
+      <tr><td>Exclusivity</td><td>Exclusive mandate during the term of this Agreement</td></tr>
+    </table>
+    <div class="sh">1. The Parties</div>
+    <p class="bt"><strong>Party A (The Advisor):</strong> Bathunywe Business Enterprise (Pty) Ltd, a specialist land enablement advisory firm. <strong>Party B (The Trust):</strong> Azibuye Emasisweni Maqamu Community Property Trust (IT 1021/2007), the confirmed restitution beneficiary under Court Order LCC 01/2009 dated 13 June 2025, relating to properties in Campedown, Mkhambathini Local Municipality, at a settled value of R16,743,000.00.</p>
+    <div class="sh">2. Background &amp; Recitals</div>
+    <p class="bt">WHEREAS the Trust is the registered legal entity of the Amaqamu Community, holding land rights in terms of the court order granted. WHEREAS the confirmed government land valuation for Phase 4 properties is R16,743,000.00. WHEREAS Bathunywe is a specialist land enablement advisory providing multidisciplinary services including planning, surveying, municipal liaison, investor origination, and development structuring. WHEREAS the Trust wishes to appoint Bathunywe as its exclusive Land Enablement Advisor and Investor Sourcing Mandatary for the properties. NOW THEREFORE the Parties agree as follows:</p>
+    <div class="sh">3. Appointment &amp; Mandate</div>
+    <p class="bt"><strong>3.1 Appointment:</strong> The Trust hereby appoints Bathunywe Business Enterprise (Pty) Ltd as its exclusive Land Enablement Advisor and Investor Sourcing Mandatary for the Trust&rsquo;s land holdings.</p>
+    <p class="bt"><strong>3.2 Scope of Mandate:</strong></p>
+    <ul class="bt" style="padding-left:20px;margin:6px 0">
+      <li>Town and regional planning advisory, including township establishment and rezoning applications</li>
+      <li>Land survey coordination and title deed management oversight</li>
+      <li>Municipal and regulatory liaison with Mkhambathini Local Municipality, uMgungundlovu District Municipality and relevant provincial departments</li>
+      <li>Stakeholder engagement and community facilitation on behalf of the Trust</li>
+      <li>Origination, sourcing and packaging of private sector developers and investors</li>
+      <li>Post-settlement development planning and business case preparation</li>
+      <li>Technology-enabled project tracking, reporting and documentation management</li>
+      <li>Any other land enablement services mutually agreed upon in writing by the Parties</li>
+    </ul>
+    <p class="bt"><strong>3.3 Exclusivity:</strong> During the term of this Agreement, the Trust shall not appoint any other party to perform the same or substantially similar services.</p>
+    <div class="sh">4. Remuneration</div>
+    <table class="rem">
+      <thead><tr><th>Layer</th><th>Component</th><th>Rate / Amount</th><th>Trigger</th></tr></thead>
+      <tbody>
+        <tr><td class="rem-n">1</td><td><span class="rem-c">Monthly Retainer</span><span class="rem-nt">Operational advisory fee, payable in advance on the 1st of each month.</span></td><td class="rem-r">R35,000/month<br><span style="font-size:9px;color:var(--lgr)">excl. VAT</span></td><td class="rem-s">Monthly &mdash; 1st of month</td></tr>
+        <tr><td class="rem-n">2</td><td><span class="rem-c">Milestone Fee (7% of GDV)</span><span class="rem-nt">Triggered on: rezoning/township establishment approval; signing of development/sale agreement; financial close of transaction.</span></td><td class="rem-r">7% of GDV</td><td class="rem-s">Per milestone achieved</td></tr>
+        <tr><td class="rem-n">3</td><td><span class="rem-c">Equity Participation</span><span class="rem-nt">Where Bathunywe co-creates the development solution, the Parties shall negotiate equity participation in good faith.</span></td><td class="rem-r">To be negotiated</td><td class="rem-s">Per development project</td></tr>
+      </tbody>
+    </table>
+    <p class="bt" style="margin-top:10px;font-size:11px;color:var(--lgr);">All fees invoiced by Bathunywe are payable within 30 days of invoice. Late payments attract interest at the prime overdraft rate plus 2% per annum.</p>
+    <div class="sh">5. Term &amp; Termination</div>
+    <p class="bt"><strong>5.1 Initial Term:</strong> This Agreement shall commence on the date of signature and shall remain in force for an initial period of 24 (twenty-four) months. <strong>5.2 Termination:</strong> Either Party may terminate on 3 (three) months&rsquo; written notice. Termination shall not affect any accrued rights or obligations. <strong>5.3 Renewal:</strong> Upon expiry of the initial term, this Agreement shall automatically renew on a month-to-month basis unless either Party provides 1 (one) month&rsquo;s written notice of non-renewal.</p>
+    <div class="sh">6. Obligations of the Parties</div>
+    <p class="bt"><strong>6.1 Obligations of the Trust:</strong> (a) Provide timely access to all relevant documents, title deeds, survey diagrams, and court orders; (b) Facilitate introductions to community leaders, trustees and municipal representatives; (c) Attend stakeholder engagements; (d) Make timely payment of all fees; (e) Not circumvent Bathunywe by engaging directly with any developer or investor introduced by Bathunywe during the term and for 24 months thereafter.</p>
+    <p class="bt"><strong>6.2 Obligations of Bathunywe:</strong> (a) Perform all services diligently and professionally; (b) Maintain confidentiality; (c) Report to the Trust monthly; (d) Act with integrity; (e) Comply with all applicable laws.</p>
+    <div class="sh">7. Confidentiality &amp; Intellectual Property</div>
+    <p class="bt">Each Party undertakes to keep confidential all proprietary or sensitive information received from the other Party. All work product, reports, plans, strategies, and deliverables produced by Bathunywe specifically for the Trust under this Agreement shall be the joint property of the Parties.</p>
+    <div class="sh">8. Dispute Resolution &amp; Governing Law</div>
+    <p class="bt">In the event of any dispute, the Parties shall first attempt to resolve it by good faith negotiation. If unresolved within 30 days, the matter shall be referred to mediation, and if still unresolved, to arbitration under AFSA rules. This Agreement shall be governed by the laws of the Republic of South Africa.</p>
+    <div class="sig-grid">
+      <div class="sig-b"><div class="sig-lbl">Party A &mdash; The Advisor</div><div class="sig-ln"></div><div class="sig-nm">Ms Thembeka P Ndlovu-Nkabinde</div><div class="sig-rl">Managing Director</div><div class="sig-en">Bathunywe Business Enterprise (Pty) Ltd</div><div class="sig-dt">Date: ___________________________</div></div>
+      <div class="sig-b"><div class="sig-lbl">Party B &mdash; The Trust</div><div class="sig-ln"></div><div class="sig-nm">Mr Ngcobo &mdash; Authorised Trustee</div><div class="sig-rl">Trustee</div><div class="sig-en">Azibuye Emasisweni Maqamu Community Property Trust (IT 1021/2007)</div><div class="sig-dt">Date: ___________________________</div></div>
+    </div>
+    <div class="wit-grid"><div><div class="wit-ln"></div><div class="wit-lbl">Witness 1 &mdash; Full Name &amp; Signature</div></div><div><div class="wit-ln"></div><div class="wit-lbl">Witness 2 &mdash; Full Name &amp; Signature</div></div></div>
+  <div class="dl-bar">
+    <span class="dl-lbl">&#8659; Download Document</span>
+    <a class="dl-btn dl-btn-w" href="/files/Bathunywe_Amaqamu_MOA.docx" download><span class="dl-icon">&#128196;</span>Word (.docx)</a>
+    <button class="dl-btn dl-btn-p" onclick="printDoc('d6')"><span class="dl-icon">&#128438;</span>Save as PDF</button>
+  </div>
+  </div>
+  <div class="doc-foot"><div class="df-l">Memorandum of Agreement &middot; Azibuye Emasisweni Maqamu CPT (IT 1021/2007) &middot; Bathunywe Business Enterprise</div><div class="df-r">CONFIDENTIAL</div></div>
+</div>
+
+<!-- ══ DOC 7: REMUNERATION FRAMEWORK ══ -->
+<div id="pg-d7" class="page doc-pg">
+  <div class="doc-banner">
+    <div class="doc-eye">Document 07 of 07</div>
+    <div class="doc-ttl">Remuneration Framework</div>
+    <div class="doc-sub">Land Enablement Advisory &mdash; Amaqamu Community Property Trust Engagement</div>
+    <div class="doc-ref">Confidential &mdash; Prepared exclusively for Azibuye Emasisweni Maqamu Community Property Trust &nbsp;&middot;&nbsp; April 2026</div>
+  </div>
+  <div class="doc-body">
+    <table class="itbl">
+      <tr><td>Trust Entity</td><td>Azibuye Emasisweni Maqamu CPT (IT 1021/2007)</td></tr>
+      <tr><td>Advisor</td><td>Bathunywe Business Enterprise &mdash; Part of Kwahlelwa Group</td></tr>
+      <tr><td>Contact</td><td>Durban, KwaZulu-Natal &nbsp;&middot;&nbsp; 064 693 4410</td></tr>
+    </table>
+    <div class="sh">Who We Are</div>
+    <p class="bt">Bathunywe is a specialist land enablement advisory. We serve as the multidisciplinary team that Community Property Trusts typically cannot afford to employ full-time &mdash; bringing together town planning, land surveying, municipal engagement, investor origination, and technology into a single, integrated service.</p>
+    <div class="sh">Engagement Context &mdash; Amaqamu Trust</div>
+    <table class="itbl" style="margin-bottom:10px">
+      <tr><td>Trust Scope</td><td>Municipal and regulatory liaison; investor origination; development structuring; community facilitation; technology-enabled tracking and reporting</td></tr>
+      <tr><td>Land Value</td><td>Settled value R16,743,000.00 (Phase 4 properties, Camperdown &amp; PMB districts)</td></tr>
+    </table>
+    <div class="sh">Our Remuneration Model</div>
+    <table class="rem">
+      <thead><tr><th>Component</th><th>Rate / Range</th><th>What Triggers It</th></tr></thead>
+      <tbody>
+        <tr><td><span class="rem-c">Layer 1 &mdash; Monthly Retainer</span><span class="rem-nt">Active advisory, regulatory tracking, stakeholder engagement, monthly reporting.</span></td><td class="rem-r">R35,000 /month<br><span style="font-size:9px;color:var(--lgr)">excl. VAT</span></td><td class="rem-s">Payable on the 1st of each month from commencement</td></tr>
+        <tr><td><span class="rem-c">Layer 2 &mdash; Milestone Fee</span><span class="rem-nt">Fully contingent &mdash; only earned when results are delivered.</span></td><td class="rem-r">7% of GDV</td><td class="rem-s">Triggered on: rezoning approval; signed developer / investor agreement; financial close</td></tr>
+        <tr><td><span class="rem-c">Layer 3 &mdash; Equity / Revenue Share</span><span class="rem-nt">Optional long-term participation in the development value created.</span></td><td class="rem-r">8% equity in development SPV</td><td class="rem-s">Negotiated per project where Bathunywe co-creates the development solution</td></tr>
+      </tbody>
+    </table>
+    <div class="sh">Our Guiding Principle</div>
+    <p class="bt" style="font-style:italic;border-left:3px solid var(--au);padding-left:14px;color:var(--g);">&ldquo;We are not a consultant that invoices and disappears. The bulk of what Bathunywe earns is tied directly to what we deliver for the Trust and its beneficiary community.&rdquo;</p>
+    <div class="sh">Proposed Next Steps</div>
+    <ul class="bt" style="padding-left:20px;margin:6px 0">
+      <li>Execute a formal Mandate Agreement between Bathunywe and the Amaqamu CPT</li>
+      <li>Conduct a land audit across all settled portions (Camperdown &amp; PMB districts)</li>
+      <li>Initiate engagement with uMgungundlovu District Municipality on development rights</li>
+      <li>Commence investor and developer origination for priority land parcels</li>
+    </ul>
+  <div class="dl-bar">
+    <span class="dl-lbl">&#8659; Download Document</span>
+    <a class="dl-btn dl-btn-w" href="/files/Bathunywe_Amaqamu_Remuneration_OnePager.docx" download><span class="dl-icon">&#128196;</span>Word (.docx)</a>
+    <button class="dl-btn dl-btn-p" onclick="printDoc('d7')"><span class="dl-icon">&#128438;</span>Save as PDF</button>
+  </div>
+  </div>
+  <div class="doc-foot"><div class="df-l">Remuneration Framework &middot; Bathunywe Business Enterprise &middot; Part of Kwahlelwa Group &middot; Durban, KwaZulu-Natal</div><div class="df-r">CONFIDENTIAL</div></div>
 </div>
 
 </div><!-- end shell -->
@@ -550,6 +718,14 @@ function show(id){
   document.querySelectorAll('[data-pg="'+id+'"]').forEach(function(el){el.classList.add('on')});
   window.scrollTo(0,0);
   document.getElementById('shell').scrollTop=0;
+}
+function printDoc(id){
+  var pg=document.getElementById('pg-'+id);
+  if(!pg)return;
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('printing')});
+  pg.classList.add('printing');
+  window.print();
+  pg.classList.remove('printing');
 }
 </script>
 </body>
