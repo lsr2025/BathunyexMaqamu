@@ -105,3 +105,60 @@ create policy "anon upload memories"
 create policy "public read memories"
   on storage.objects for select to anon, authenticated
   using (bucket_id = 'memories');
+
+-- ══════════════════════════════════════════════════════════════════════
+--  Admin access
+--  The admin panel reads every submission (including the private ones).
+--  Rather than shipping a service-role key to the app, privileged reads
+--  go through a SECURITY DEFINER function gated by a password stored in a
+--  locked-down settings table. This keeps the app running on the public
+--  anon key alone.
+--
+--  ▸ CHANGE THE ADMIN PASSWORD before going live:
+--      update public.app_settings set value = 'your-new-password'
+--      where key = 'admin_password';
+-- ══════════════════════════════════════════════════════════════════════
+create table if not exists public.app_settings (
+  key   text primary key,
+  value text not null
+);
+
+-- RLS on with NO policies => no anon/authenticated access at all.
+-- Only SECURITY DEFINER functions (which run as the owner) can read it.
+alter table public.app_settings enable row level security;
+
+insert into public.app_settings (key, value)
+values ('admin_password', 'change-me-admin-password')
+on conflict (key) do nothing;
+
+-- Returns every submission as JSON, but only when the supplied password
+-- matches. Raises on a bad password so the app can surface a 401.
+create or replace function public.admin_export(p_password text)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  stored text;
+  result jsonb;
+begin
+  select value into stored from public.app_settings where key = 'admin_password';
+  if stored is null or p_password is null or p_password <> stored then
+    raise exception 'unauthorized' using errcode = '28000';
+  end if;
+
+  select jsonb_build_object(
+    'messages',    coalesce((select jsonb_agg(t) from (select * from public.messages_to_mommy order by created_at desc) t), '[]'::jsonb),
+    'letters',     coalesce((select jsonb_agg(t) from (select * from public.letters_to_baby   order by created_at desc) t), '[]'::jsonb),
+    'predictions', coalesce((select jsonb_agg(t) from (select * from public.predictions        order by created_at desc) t), '[]'::jsonb),
+    'photos',      coalesce((select jsonb_agg(t) from (select * from public.photo_memories     order by created_at desc) t), '[]'::jsonb),
+    'guestbook',   coalesce((select jsonb_agg(t) from (select * from public.guestbook           order by created_at desc) t), '[]'::jsonb)
+  ) into result;
+
+  return result;
+end;
+$$;
+
+revoke all on function public.admin_export(text) from public;
+grant execute on function public.admin_export(text) to anon, authenticated;
